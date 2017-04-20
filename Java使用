@@ -1,0 +1,2 @@
+#### 当使用JAVA_OPTS向java中传递参数时,可以使用如下方法
+JAVA_OPTS="-Dconfig.resource=application-staging.conf" sh VipDataMigrationMainCtrl.sh

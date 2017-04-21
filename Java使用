@@ -1,2 +1,9 @@
 #### 当使用JAVA_OPTS向java中传递参数时,可以使用如下方法
-JAVA_OPTS="-Dconfig.resource=application-staging.conf" sh VipDataMigrationMainCtrl.sh
+JAVA_OPTS="$JAVA_OPTS -Dconfig.resource=application-staging.conf" sh VipDataMigrationMainCtrl.sh
+#### 数据库查询
+for ((i=0;i<1000;++i)); do
+  db="total_quota_$(($i/100))"
+  table="$db.total_quota_$i"
+  sql="select * from $table where user_id=139819496;"
+  mysql -h $dataBaseHost -u $USER -p$PASSWORD --default-character-set=utf8 -e "$sql" | grep -v signature
+done > xuxiaoxiao.txt

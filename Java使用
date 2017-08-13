@@ -7,3 +7,24 @@ for ((i=0;i<1000;++i)); do
   sql="select * from $table where user_id=139819496;"
   mysql -h $dataBaseHost -u $USER -p$PASSWORD --default-character-set=utf8 -e "$sql" | grep -v signature
 done > xuxiaoxiao.txt
+
+ust ran into this problem running mahout from CDH4 in standalone mode in my MacBook Air.
+
+The issue is that a /tmp/hadoop-xxx/xxx/LICENSE file and a /tmp/hadoop-xxx/xxx/license directory are being created on a case-insensitive file system when unjarring the mahout jobs.
+
+I was able to workaround this by deleting META-INF/LICENSE from the jar file like this:
+
+zip -d mahout-examples-0.6-cdh4.0.0-job.jar META-INF/LICENSE
+and then verified it with
+
+jar tvf mahout-examples-0.6-cdh4.0.0-job.jar | grep -i license
+Hope this helps!
+
+
+cd repository
+git log --pretty=email --patch-with-stat --reverse --full-index --binary -- path/to/file_or_folder > patch
+cd ../another_repository
+git am < ../repository/patch 
+
+
+参考: http://stackoverflow.com/questions/1365541/how-to-move-files-from-one-git-repo-to-another-not-a-clone-preserving-history​

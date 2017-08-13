@@ -28,3 +28,16 @@ git am < ../repository/patch
 
 
 参考: http://stackoverflow.com/questions/1365541/how-to-move-files-from-one-git-repo-to-another-not-a-clone-preserving-history​
+
+
+git reset --hard origin/master
+says: throw away all my staged and unstaged changes, forget everything on my current local branch and make it exactly the same as origin/master.
+
+You probably wanted to ask this before you ran the command. The destructive nature is hinted at by using the same words as in "hard reset".
+
+https://stackoverflow.com/questions/7929369/how-to-rebase-local-branch-with-remote-master
+First fetch the new master from the upstream repository, then rebase your work branch on that:
+
+git fetch origin            # Updates origin/master
+git rebase origin/master    # Rebases current branch onto origin/master
+Update: Please see Paul Draper's answer for a more concise way to do the same - recent Git versions provide a simpler way to do the equivalent of the above two commands.

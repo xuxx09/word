@@ -41,3 +41,5 @@ First fetch the new master from the upstream repository, then rebase your work b
 git fetch origin            # Updates origin/master
 git rebase origin/master    # Rebases current branch onto origin/master
 Update: Please see Paul Draper's answer for a more concise way to do the same - recent Git versions provide a simpler way to do the equivalent of the above two commands.
+
+在对jar包进行操作时可以配合zip和jar两个命令同时进行,使用zip可以对jar包进行更改,使用jar命令用于查看解压等

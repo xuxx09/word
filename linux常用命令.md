@@ -6,3 +6,15 @@ ps -aux
 ```
 cat text.txt| awk '{if(length($0)>0) print $0}' | sort -k2
 ```
+3.对文件进行切分后删除字符按行输出
+```
+sample like this
+com.miui.video
+com.tencent.qqlive
+
+'com.miui.video', 'com.tencent.qqlive', 'com.yidian.xiaomi', 'com.tencent.news', 'com.qiyi.video', 'com.android.browser' 
+```
+
+```
+cat out.txt | awk -F", " '{for(i=1;i<=NF;i=i+1) print $i}' | tr -d "'"
+```

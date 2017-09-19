@@ -22,3 +22,7 @@ cat out.txt | awk -F", " '{for(i=1;i<=NF;i=i+1) print $i}' | tr -d "'"
 ```
 netstat -ntu | grep :80 | awk '{print $5}' | cut -d: -f1 | awk '{++ip[$1]} END {for(i in ip) print ip[i],"\t",i}' | sort -nr
 ```
+5.awk进行多项排序
+```
+awk -F'\t' ' $4==3{x=($1%1000<500?5:3)"\t" $6 "\t" ($5==1.0);s[x]++}END{for(i in s)print i,s[i]}' task-4939907-stdout   | sort
+```

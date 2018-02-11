@@ -1,0 +1,4 @@
+如何开启无线链接
+sudo vim /etc/modprobe.d/blacklist.conf
+加入
+blacklist acer-wmi

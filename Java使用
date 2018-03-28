@@ -43,3 +43,26 @@ git rebase origin/master    # Rebases current branch onto origin/master
 Update: Please see Paul Draper's answer for a more concise way to do the same - recent Git versions provide a simpler way to do the equivalent of the above two commands.
 
 在对jar包进行操作时可以配合zip和jar两个命令同时进行,使用zip可以对jar包进行更改,使用jar命令用于查看解压等
+
+修改表结构
+for ((i=0; i<1000; ++i)); do
+   seg1="ALTER TABLE camera_file_meta_$i MODIFY imgStoreId VARCHAR(800) NOT NULL DEFAULT '';"
+   seg2="ALTER TABLE camera_file_meta_$i MODIFY videoStoreId VARCHAR(800) NOT NULL DEFAULT '';"
+   seg3="ALTER TABLE camera_file_meta_$i MODIFY meta VARCHAR(800) NOT NULL DEFAULT '';"
+   mod=$(($i%100))
+   num=$(($i/100))
+   if
+        [ $mod = "0" ]
+   then
+        database="miot_camera_meta_$num"
+        echo "CREATE DATABASE IF NOT EXISTS \`$database\` DEFAULT CHARSET=utf8;"
+        echo "USE \`$database\`;"
+        echo $seg1
+        echo $seg2
+        echo $seg3
+   else 
+        echo $seg1
+        echo $seg2
+        echo $seg3
+   fi
+done > xuxiaoxiao.txt

@@ -1,0 +1,22 @@
+cat feedback1.txt | awk -F'\t' '{sum += $2} END {print sum}'
+
+数据库隐藏密码的shell脚本
+#!/bin/bash  
+
+STTY_RESTORE=$(stty -g)
+
+echo -n "Username: "  
+read username
+
+stty -echo
+echo -n "Password: "  
+read password
+echo -e "loading ..."
+for ((i=0;i<10000;++i)); do
+ db="miot_camera_meta_$(($i/100))"
+ table="$db.camera_detection_feedback_$i"
+ sql="select count(*) from $table;"
+ mysql -h &*&*&*&* -P6065 -u $username -p$password --default-character-set=utf8 -e "$sql"
+done > feedback.txt
+stty $STTY_RESTORE
+echo -e "SUCCESS."

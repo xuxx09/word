@@ -66,3 +66,23 @@ for ((i=0; i<1000; ++i)); do
         echo $seg3
    fi
 done > xuxiaoxiao.txt
+
+
+for ((i=0; i<27; ++i)); do
+   head="tj1-smart-video"
+   footer=".kscn"
+   if
+        [ $i -lt 10 ]
+   then
+      host="${head}0${i}${footer}"
+   else
+      host="${head}${i}${footer}"
+   fi
+   mkdir "/home/work/tmp/tutklog/${host}"
+   echo $host
+   scp "${host}:/home/work/log/tutk_current_log/07*.txt" "/home/work/tmp/tutklog/${host}"
+done > xuxiaoxiao.txt
+
+ls -aF /home/work/tmp/tutklog/*/* | xargs cat | grep "Device Login" | awk '{print $5, $7, $8 }' | awk -F ":|," '{print $1  $2  $4}' | sort | uniq
+
+join -1 2 -2 3 file1.txt file2.txt

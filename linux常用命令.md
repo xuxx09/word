@@ -26,3 +26,5 @@ netstat -ntu | grep :80 | awk '{print $5}' | cut -d: -f1 | awk '{++ip[$1]} END {
 ```
 awk -F'\t' ' $4==3{x=($1%1000<500?5:3)"\t" $6 "\t" ($5==1.0);s[x]++}END{for(i in s)print i,s[i]}' task-4939907-stdout   | sort
 ```
+6.合并相同的字段
+awk '{for(i=2;i<=NF;i++)a[$1]=a[$1]","$i}END{for(i in a)print i,a[i]}'
